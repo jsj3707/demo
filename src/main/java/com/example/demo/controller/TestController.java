@@ -34,7 +34,7 @@ public class TestController {
 		return "Hello world! testGetMapping";
 	}
 
-	// pathVariable를 활용한 GetMapping 
+	// pathVariable를 활용한 GetMapping
 	// localhost:8080/test/123
 
 	@GetMapping("{id}") public String
@@ -49,9 +49,29 @@ public class TestController {
 	    return "Hello world! ID : " + id; //result = Hello world! ID : 999
 	}
 
-	// requestBody를 활용한 GetMapping
+	//requestBody를 활용한 GetMapping
 	@GetMapping("/testRequestBody")
 	public String testControllerWithRequestBody(@RequestBody TestRequestBodyDTO testRequestBodyDTO) {
 		return "Hello world! ID : " + testRequestBodyDTO.getId() + " Message : " + testRequestBodyDTO.getMessage();
+	}
+	//responsebody control
+	@GetMapping("/testResponseBody")
+	public ResponseDTO<String> testControllerResponseBody() {
+		// ArrayList 생성
+		List<String> list = new ArrayList();
+		// list변수에 데이터 적재
+		list.add("Hello world! I'm ResponseDTO");
+		ResponseDTO<String> response = ResponseDTO.<String>builder().data(list).build();
+
+		return response;
+	}
+	// responseEntity control
+	@GetMapping("/testResponseEntity")
+	public ResponseEntity<?> testControllerResponseEntity() {
+		list<String> list = new ArrayList();
+		list.add("Hello world! I'm ResponseEntity. And you got 400!");
+		ResponseDTO<String> response = ResponseDTO.<String>builder().data(list).build();
+		// http stauts를 400으로 리턴
+		return ResponseEntity.badRequest().body(response);
 	}
 }
