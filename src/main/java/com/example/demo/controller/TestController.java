@@ -18,14 +18,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("test") // ¸®¼Ò½º
+@RequestMapping("test") // ë¦¬ì†ŒìŠ¤
 public class TestController {
 //	@GetMapping
 //	public String testController() {
 //		return "Hello world!";
 //	}
 
-/*  ¾Æ·¡ ¾î³ëÅ×ÀÌ¼ÇÀº ½ºÇÁ¸µ 4.3ºÎÅÍ Áö¿øµÇ½Ä ½ÃÀÛÇÔ.
+/*  ì•„ë˜ ì–´ë…¸í…Œì´ì…˜ì€ ìŠ¤í”„ë§ 4.3ë¶€í„° ì§€ì›ë˜ì‹ ì‹œì‘í•¨.
     @PostMapping
 	@PutMapping
 	@DeletMapping 	*/
@@ -33,23 +33,23 @@ public class TestController {
 	public String testControllerWithPath() {
 		return "Hello world! testGetMapping";
 	}
-	
-	// pathVariable¸¦ È°¿ëÇÑ GetMapping 
+
+	// pathVariableë¥¼ í™œìš©í•œ GetMapping 
 	// localhost:8080/test/123
-	  
+
 	@GetMapping("{id}") public String
 	testControllerWithPathVariable(@PathVariable(required = false) int id) {
 	    return "Hello world! ID : " + id; // result = Hello world! ID : 123 }
-	} 
-	// requestParamÀ» È°¿ëÇÑ GetMapping
+	}
+	// requestParamì„ í™œìš©í•œ GetMapping
 	// localhost:8080/test/testRequestParam?id=999
-	  
+
 	@GetMapping("/testRequestParam") public String
 	testControllerWithRequestParam(@RequestParam(required = false) int id){
-	    return "Hello world! ID : " + id; //result = Hello world! ID : 999 
+	    return "Hello world! ID : " + id; //result = Hello world! ID : 999
 	}
-	
-	// requestBody¸¦ È°¿ëÇÑ GetMapping
+
+	// requestBodyë¥¼ í™œìš©í•œ GetMapping
 	@GetMapping("/testRequestBody")
 	public String testControllerWithRequestBody(@RequestBody TestRequestBodyDTO testRequestBodyDTO) {
 		return "Hello world! ID : " + testRequestBodyDTO.getId() + " Message : " + testRequestBodyDTO.getMessage();
